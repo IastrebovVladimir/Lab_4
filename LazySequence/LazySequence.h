@@ -114,16 +114,21 @@ private:
             return sequence->Get(index);
         }
     };
-
+    
 protected:
     Sequence<T>* CreateEmpty() const override {
         return new LazySequence<T>();
     }
 
 public:
-    LazySequence() : generator(std::make_shared<EmptyGenerator<T>>()), isInfinite(false), orderType(Ordinal::MakeFinite(0)) {}
+    LazySequence() 
+        : generator(std::make_shared<EmptyGenerator<T>>()), isInfinite(false), orderType(Ordinal::MakeFinite(0)) {}
 
-    LazySequence(T* items, int count) : materialized(items, count), generator(std::make_shared<EmptyGenerator<T>>()), isInfinite(false), orderType(Ordinal::MakeFinite(static_cast<size_t>(count))) {}
+    LazySequence(T* items, int count) 
+        : materialized(items, count), 
+          generator(std::make_shared<EmptyGenerator<T>>()), 
+          isInfinite(false), 
+          orderType(Ordinal::MakeFinite(static_cast<size_t>(count))) {}
 
     LazySequence(const Sequence<T>& sequence) {
         MutableArraySequence<T> temp;
