@@ -18,6 +18,5 @@ typedef struct TypeInfo {
 
 extern const TypeInfo *get_int_t(void);
 extern const TypeInfo *get_double_t(void);
-extern const TypeInfo *get_complex_t(void);
 
 #endif
