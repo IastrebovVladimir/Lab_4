@@ -291,9 +291,7 @@ public:
 
         auto* result = new LazySequence<T>();
         result->isInfinite = isInfinite;
-        result->orderType = Ordinal::IsFinite(orderType)
-                            ? Ordinal::Add(Ordinal::MakeFinite(1), orderType)
-                            : orderType;
+        result->orderType = Ordinal::IsFinite(orderType) ? Ordinal::Add(Ordinal::MakeFinite(1), orderType) : orderType;
 
         MutableArraySequence<T> newMat;
         newMat.Append(item);
@@ -344,7 +342,7 @@ public:
 
         newMaterialized.Append(item);
 
-        for (int i = leftCount; i < prefixLen; ++i) {
+        for (int i = leftCount; i < prefixLen; i++) {
             newMaterialized.Append(materialized.Get(i));
         }
 
