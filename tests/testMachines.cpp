@@ -25,7 +25,7 @@ TEST(MachineRunnerTests, SingleCoinStateAtZero) {
     TurnstileStateMachine machine;
 
     MutableArraySequence<TurnstileEvent> inputSeq;
-    inputSeq->Append(TurnstileEvent::Coin);
+    inputSeq.Append(TurnstileEvent::Coin);
     SequenceReadOnlyStream<TurnstileEvent> input(&inputSeq);
 
     MutableArraySequence<TurnstileTransitionResult> outputSeq;
@@ -141,9 +141,9 @@ TEST(MachineRunnerTests, ThirtyStatesFileLog) {
     MutableArraySequence<TurnstileEvent> inputSeq;
     for (size_t index = 0; index < 30; index++) {
         if (index % 2 == 0) {
-            inputSeq->Append(TurnstileEvent::Coin);
+            inputSeq.Append(TurnstileEvent::Coin);
         } else {
-            inputSeq->Append(TurnstileEvent::Push);
+            inputSeq.Append(TurnstileEvent::Push);
         }
     }
     SequenceReadOnlyStream<TurnstileEvent> input(&inputSeq);
