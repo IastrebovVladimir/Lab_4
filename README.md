@@ -19,7 +19,7 @@ git clone https://github.com/google/googletest.git
 ## Запуск тестов
 
 ```bash
-g++ -g -O0 -std=c++20 tests/testLazy.cpp tests/testGenerator.cpp tests/testStreams.cpp tests/testMachines.cpp tests/testTransfinite.cpp -I. -isystem googletest/googletest/include -Igoogletest/googletest googletest/googletest/src/gtest-all.cc -pthread -o LazyTests
+g++ -g -O0 -std=c++20 tests/testMain.cpp tests/testLazy.cpp tests/testGenerator.cpp tests/testStreams.cpp tests/testMachines.cpp tests/testTransfinite.cpp -I. -isystem googletest/googletest/include -Igoogletest/googletest googletest/googletest/src/gtest-all.cc -pthread -o LazyTests
 ./LazyTests
 ```
 
