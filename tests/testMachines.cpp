@@ -43,10 +43,10 @@ TEST(MachineRunnerTests, StatesByGlobalIndex) {
     TurnstileStateMachine machine;
 
     MutableArraySequence<TurnstileEvent> inputSeq;
-    inputSeq->Append(TurnstileEvent::Coin);
-    inputSeq->Append(TurnstileEvent::Push);
-    inputSeq->Append(TurnstileEvent::Push);
-    inputSeq->Append(TurnstileEvent::Coin);
+    inputSeq.Append(TurnstileEvent::Coin);
+    inputSeq.Append(TurnstileEvent::Push);
+    inputSeq.Append(TurnstileEvent::Push);
+    inputSeq.Append(TurnstileEvent::Coin);
     SequenceReadOnlyStream<TurnstileEvent> input(&inputSeq);
 
     MutableArraySequence<TurnstileTransitionResult> outputSeq;
@@ -68,7 +68,7 @@ TEST(MachineRunnerTests, TwentyStepsIndices0To19) {
 
     MutableArraySequence<TurnstileEvent> inputSeq;
     for (size_t index = 0; index < 20; index++) {
-        inputSeq->Append(TurnstileEvent::Coin);
+        inputSeq.Append(TurnstileEvent::Coin);
     }
     SequenceReadOnlyStream<TurnstileEvent> input(&inputSeq);
 
@@ -91,7 +91,7 @@ TEST(MachineRunnerTests, TwentyOneWindow1To20) {
 
     MutableArraySequence<TurnstileEvent> inputSeq;
     for (size_t index = 0; index < 21; index++) {
-        inputSeq->Append(TurnstileEvent::Coin);
+        inputSeq.Append(TurnstileEvent::Coin);
     }
     SequenceReadOnlyStream<TurnstileEvent> input(&inputSeq);
 
@@ -113,7 +113,7 @@ TEST(MachineRunnerTests, TwentyFiveKeepLastTwenty) {
 
     MutableArraySequence<TurnstileEvent> inputSeq;
     for (size_t index = 0; index < 25; index++) {
-        inputSeq->Append(TurnstileEvent::Coin);
+        inputSeq.Append(TurnstileEvent::Coin);
     }
     SequenceReadOnlyStream<TurnstileEvent> input(&inputSeq);
 
