@@ -12,7 +12,7 @@
 ```bash
 cd ~
 git clone https://github.com/IastrebovVladimir/Lab_4.git
-cd PiecewiseFunction
+cd Lab_4
 git clone https://github.com/google/googletest.git
 ```
 
