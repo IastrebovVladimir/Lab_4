@@ -9,11 +9,11 @@
 TEST(MachineRunnerTests, GetStateOnEmptyThrows) {
     TurnstileStateMachine machine;
 
-    auto* inputSeq = new MutableArraySequence<TurnstileEvent>();
-    SequenceReadOnlyStream<TurnstileEvent> input(inputSeq);
+    MutableArraySequence<TurnstileEvent> inputSeq;
+    SequenceReadOnlyStream<TurnstileEvent> input(&inputSeq);
 
-    auto* outputSeq = new MutableArraySequence<TurnstileTransitionResult>();
-    SequenceWriteOnlyStream<TurnstileTransitionResult> output(outputSeq);
+    MutableArraySequence<TurnstileTransitionResult> outputSeq;
+    SequenceWriteOnlyStream<TurnstileTransitionResult> output(&outputSeq);
 
     MachineRunner<TurnstileState, TurnstileEvent, TurnstileTransitionResult> runner(machine, input, output);
 
@@ -24,12 +24,12 @@ TEST(MachineRunnerTests, GetStateOnEmptyThrows) {
 TEST(MachineRunnerTests, SingleCoinStateAtZero) {
     TurnstileStateMachine machine;
 
-    auto* inputSeq = new MutableArraySequence<TurnstileEvent>();
+    MutableArraySequence<TurnstileEvent> inputSeq;
     inputSeq->Append(TurnstileEvent::Coin);
-    SequenceReadOnlyStream<TurnstileEvent> input(inputSeq);
+    SequenceReadOnlyStream<TurnstileEvent> input(&inputSeq);
 
-    auto* outputSeq = new MutableArraySequence<TurnstileTransitionResult>();
-    SequenceWriteOnlyStream<TurnstileTransitionResult> output(outputSeq);
+    MutableArraySequence<TurnstileTransitionResult> outputSeq;
+    SequenceWriteOnlyStream<TurnstileTransitionResult> output(&outputSeq);
 
     MachineRunner<TurnstileState, TurnstileEvent, TurnstileTransitionResult> runner(machine, input, output);
 
@@ -42,15 +42,15 @@ TEST(MachineRunnerTests, SingleCoinStateAtZero) {
 TEST(MachineRunnerTests, StatesByGlobalIndex) {
     TurnstileStateMachine machine;
 
-    auto* inputSeq = new MutableArraySequence<TurnstileEvent>();
+    MutableArraySequence<TurnstileEvent> inputSeq;
     inputSeq->Append(TurnstileEvent::Coin);
     inputSeq->Append(TurnstileEvent::Push);
     inputSeq->Append(TurnstileEvent::Push);
     inputSeq->Append(TurnstileEvent::Coin);
-    SequenceReadOnlyStream<TurnstileEvent> input(inputSeq);
+    SequenceReadOnlyStream<TurnstileEvent> input(&inputSeq);
 
-    auto* outputSeq = new MutableArraySequence<TurnstileTransitionResult>();
-    SequenceWriteOnlyStream<TurnstileTransitionResult> output(outputSeq);
+    MutableArraySequence<TurnstileTransitionResult> outputSeq;
+    SequenceWriteOnlyStream<TurnstileTransitionResult> output(&outputSeq);
 
     MachineRunner<TurnstileState, TurnstileEvent, TurnstileTransitionResult> runner(machine, input, output);
 
@@ -66,14 +66,14 @@ TEST(MachineRunnerTests, StatesByGlobalIndex) {
 TEST(MachineRunnerTests, TwentyStepsIndices0To19) {
     TurnstileStateMachine machine;
 
-    auto* inputSeq = new MutableArraySequence<TurnstileEvent>();
+    MutableArraySequence<TurnstileEvent> inputSeq;
     for (size_t index = 0; index < 20; index++) {
         inputSeq->Append(TurnstileEvent::Coin);
     }
-    SequenceReadOnlyStream<TurnstileEvent> input(inputSeq);
+    SequenceReadOnlyStream<TurnstileEvent> input(&inputSeq);
 
-    auto* outputSeq = new MutableArraySequence<TurnstileTransitionResult>();
-    SequenceWriteOnlyStream<TurnstileTransitionResult> output(outputSeq);
+    MutableArraySequence<TurnstileTransitionResult> outputSeq;
+    SequenceWriteOnlyStream<TurnstileTransitionResult> output(&outputSeq);
 
     MachineRunner<TurnstileState, TurnstileEvent, TurnstileTransitionResult> runner(machine, input, output);
 
@@ -89,14 +89,14 @@ TEST(MachineRunnerTests, TwentyStepsIndices0To19) {
 TEST(MachineRunnerTests, TwentyOneWindow1To20) {
     TurnstileStateMachine machine;
 
-    auto* inputSeq = new MutableArraySequence<TurnstileEvent>();
+    MutableArraySequence<TurnstileEvent> inputSeq;
     for (size_t index = 0; index < 21; index++) {
         inputSeq->Append(TurnstileEvent::Coin);
     }
-    SequenceReadOnlyStream<TurnstileEvent> input(inputSeq);
+    SequenceReadOnlyStream<TurnstileEvent> input(&inputSeq);
 
-    auto* outputSeq = new MutableArraySequence<TurnstileTransitionResult>();
-    SequenceWriteOnlyStream<TurnstileTransitionResult> output(outputSeq);
+    MutableArraySequence<TurnstileTransitionResult> outputSeq;
+    SequenceWriteOnlyStream<TurnstileTransitionResult> output(&outputSeq);
 
     MachineRunner<TurnstileState, TurnstileEvent, TurnstileTransitionResult> runner(machine, input, output);
 
@@ -111,14 +111,14 @@ TEST(MachineRunnerTests, TwentyOneWindow1To20) {
 TEST(MachineRunnerTests, TwentyFiveKeepLastTwenty) {
     TurnstileStateMachine machine;
 
-    auto* inputSeq = new MutableArraySequence<TurnstileEvent>();
+    MutableArraySequence<TurnstileEvent> inputSeq;
     for (size_t index = 0; index < 25; index++) {
         inputSeq->Append(TurnstileEvent::Coin);
     }
-    SequenceReadOnlyStream<TurnstileEvent> input(inputSeq);
+    SequenceReadOnlyStream<TurnstileEvent> input(&inputSeq);
 
-    auto* outputSeq = new MutableArraySequence<TurnstileTransitionResult>();
-    SequenceWriteOnlyStream<TurnstileTransitionResult> output(outputSeq);
+    MutableArraySequence<TurnstileTransitionResult> outputSeq;
+    SequenceWriteOnlyStream<TurnstileTransitionResult> output(&outputSeq);
 
     MachineRunner<TurnstileState, TurnstileEvent, TurnstileTransitionResult> runner(machine, input, output);
 
@@ -138,7 +138,7 @@ TEST(MachineRunnerTests, TwentyFiveKeepLastTwenty) {
 TEST(MachineRunnerTests, ThirtyStatesFileLog) {
     TurnstileStateMachine machine;
 
-    auto* inputSeq = new MutableArraySequence<TurnstileEvent>();
+    MutableArraySequence<TurnstileEvent> inputSeq;
     for (size_t index = 0; index < 30; index++) {
         if (index % 2 == 0) {
             inputSeq->Append(TurnstileEvent::Coin);
@@ -146,10 +146,10 @@ TEST(MachineRunnerTests, ThirtyStatesFileLog) {
             inputSeq->Append(TurnstileEvent::Push);
         }
     }
-    SequenceReadOnlyStream<TurnstileEvent> input(inputSeq);
+    SequenceReadOnlyStream<TurnstileEvent> input(&inputSeq);
 
-    auto* outputSeq = new MutableArraySequence<TurnstileTransitionResult>();
-    SequenceWriteOnlyStream<TurnstileTransitionResult> output(outputSeq);
+    MutableArraySequence<TurnstileTransitionResult> outputSeq;
+    SequenceWriteOnlyStream<TurnstileTransitionResult> output(&outputSeq);
 
     MachineRunner<TurnstileState, TurnstileEvent, TurnstileTransitionResult> runner(machine, input, output);
 
