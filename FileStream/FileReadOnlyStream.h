@@ -29,16 +29,16 @@ public:
 
     T Read() override {
         if (!isOpen) {
-            throw std::logic_error("Stream is not open");
+            throw std::logic_error("FileReadOnlyStream: Stream is not open");
         }
         if (atEnd) {
-            throw std::runtime_error("End of stream");
+            throw std::runtime_error("FileReadOnlyStream: End of stream");
         }
 
         std::string line;
         if (!std::getline(file, line)) {
             atEnd = true;
-            throw std::runtime_error("End of stream");
+            throw std::runtime_error("FileReadOnlyStream: End of stream");
         }
 
         position++;
@@ -54,7 +54,7 @@ public:
     }
 
     size_t Seek(size_t) override {
-        throw std::logic_error("SequenceReadOnlyStream: seek is not supported");
+        throw std::logic_error("FileReadOnlyStream: seek is not supported");
     }
 
     bool IsCanGoBack() const override {
